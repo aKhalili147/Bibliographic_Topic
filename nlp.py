@@ -1,5 +1,6 @@
 from data import Data
 import numpy as np 
+from operator import itemgetter
 
 class NLP:
 
@@ -24,8 +25,17 @@ class NLP:
         return occurence
 
 
-    def addUp_method(self):
+    def addUp_method(self,O_arr):
         occMatrix = self.occurenceMatrix()
-        occSorted = dict()
-        for i, fr in occMatrix:
-            
+        add_O = []
+        sum_all = 0
+        for i,word in enumerate(O_arr):
+            sum=0
+            for fr in word:
+                sum+=fr
+                sum_all+=fr
+            add_O.append([i,sum])
+
+        sorted_addO = sorted(add_O,key=itemgetter(1),reverse=True)
+        # pprint(sorted_addO)
+        return sorted_addO

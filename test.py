@@ -31,8 +31,8 @@ for i, w in enumerate(words):
     O[i, :] = occMatrix[w]
 
 # method 1: consider only most frequent words in each text 
-# keys_mfw = [] # list of most frequent words
-# mfw_size = int(0.1*len(O))
+keys_mfw = [] # list of most frequent words
+mfw_size = int(0.1*len(O))
 # keys_lfw = [] # list of least frequent words
 
 # colormap = ['r','g','b']
@@ -73,15 +73,18 @@ for i, w in enumerate(words):
 # sorted_addO = sorted(add_O,key=itemgetter(1),reverse=True)
 # # pprint(sorted_addO)
 
-# X = []
-# Y = []
-# for k in range(mfw_size):
-#     for fr in ocurrence.items():
-#         if collections.Counter(fr[1]) == collections.Counter(O[sorted_addO[k][0]]):
-#             if fr[0] not in keys_mfw:
-#                 keys_mfw.append(fr[0])
-#                 Y.append(math.log(add_O[sorted_addO[k][0]][1]))
-#                 X.append(k)
+
+sorted_addO = nlp.addUp_method(O)
+
+X = []
+Y = []
+for k in range(50):
+    for fr in occMatrix.items():
+        if collections.Counter(fr[1]) == collections.Counter(O[sorted_addO[k][0]]):
+            if fr[0] not in keys_mfw:
+                keys_mfw.append(fr[0])
+                # Y.append(math.log(add_O[sorted_addO[k][0]][1]))
+                # X.append(k)
 # print(len(X))
 # print(len(Y))
 
@@ -90,7 +93,7 @@ for i, w in enumerate(words):
 # plt.ylabel('frequency')
 # plt.show()
 
-# print(keys_mfw)
+print(keys_mfw)
 
 
 # pprint(O)
